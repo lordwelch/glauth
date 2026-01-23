@@ -20,6 +20,7 @@ type (
 		Database                  string // For Database backends only
 		GroupWithSearchCapability string // For PamLinux backend only
 		AnonymousDSE              bool   // For Config and Database backends only
+		MaxConnections            int
 	}
 
 	Helper struct {

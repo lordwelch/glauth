@@ -20,6 +20,7 @@ import (
 	"github.com/glauth/glauth/v2/pkg/handler"
 	"github.com/glauth/ldaps"
 	proxyproto "github.com/pires/go-proxyproto"
+	"golang.org/x/net/netutil"
 )
 
 type LdapSvc struct {
@@ -245,6 +246,9 @@ func (s *LdapSvc) ListenAndServe() error {
 		Listener:          ln,
 		ReadHeaderTimeout: 2 * time.Second,
 		ConnPolicy: connPolicy,
+	}
+	if s.c.Backend.MaxConnections > 0 {
+		ln = netutil.LimitListener(ln, s.c.Backend.MaxConnections)
 	}
 	defer ln.Close()
 	return s.l.Serve(ln)
