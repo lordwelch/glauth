@@ -93,13 +93,15 @@ func main() {
 		log.Info().Err(err).Msg("Could not save reloaded config. Holding on to old config")
 	}
 
-	log = logging.InitLogging(activeConfig.Debug, activeConfig.Syslog, activeConfig.StructuredLog)
+	log = logging.InitLogging(activeConfig.Debug, activeConfig.Trace, activeConfig.Syslog, activeConfig.StructuredLog)
 
 	if !checkConfig {
-		if cfg.Debug {
+		if activeConfig.Trace {
+			log.Info().Msg("Tracing enabled")
+		} else if cfg.Debug {
 			log.Info().Msg("Debugging enabled")
 		}
-		if cfg.Syslog {
+		if activeConfig.Syslog {
 			log.Info().Msg("Syslog enabled")
 		}
 	}

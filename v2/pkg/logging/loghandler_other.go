@@ -23,9 +23,11 @@ var (
 	ldapliblogmatcher = regexp.MustCompile(`^\d{4}\/\d{1,2}\/\d{1,2} \d{1,2}\:\d{1,2}\:\d{1,2} `)
 )
 
-func InitLogging(reqdebug bool, reqsyslog bool, reqstructlog bool) zerolog.Logger {
+func InitLogging(reqdebug bool, reqtrace bool, reqsyslog bool, reqstructlog bool) zerolog.Logger {
 	var level zerolog.Level
-	if reqdebug {
+	if reqtrace {
+		level = zerolog.TraceLevel
+	} else if reqdebug {
 		level = zerolog.DebugLevel
 	} else {
 		level = zerolog.InfoLevel
