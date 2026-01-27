@@ -137,6 +137,7 @@ type (
 		Helper             Helper
 		Behaviors          Behaviors
 		Debug              bool
+		Trace              bool
 		Syslog             bool
 		StructuredLog      bool
 		WatchConfig        bool
