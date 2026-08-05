@@ -87,7 +87,7 @@ setup: getdeps format
 
 prepbuild:
 	echo \- taking care of ignore files && \
-	sudo rm -rf bin/* >/dev/null && \
+	rm -rf bin/* >/dev/null && \
 	echo \- cleaning up plugins remnants && \
 	make forget-plugins && \
 	make remember-plugins
