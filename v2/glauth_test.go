@@ -464,7 +464,7 @@ func TestLdapInjection(t *testing.T) {
 func WaitForPort(host string, timeout time.Duration) error {
 	start := time.Now()
 	for {
-		conn, err := ldap.Dial("tcp", host)
+		conn, err := ldap.DialURL("ldap://" + host)
 		if err == nil {
 			err = conn.Bind("_", "_")
 			if err == nil {
