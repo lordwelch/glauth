@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/glauth/ldap"
+	"github.com/go-ldap/ldap/v3"
 	"github.com/pquerna/otp/totp"
 )
 
